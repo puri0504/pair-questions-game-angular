@@ -1,5 +1,1 @@
-
-questions
-<ng-template *ngFor="let question of questions">
-  <app-question text="fdfs"></app-question>
-</ng-template>
+<app-question *ngFor="let question of questions" text="{{ question.text }}"></app-question>
