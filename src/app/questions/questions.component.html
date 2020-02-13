@@ -1,4 +1,6 @@
 <div class="questions">
-  <app-question *ngFor="let question of questions" text="{{ question.text }}"></app-question>
-  <button class="btn">Send</button>
+  <div class="questions-wrap">
+    <app-question *ngFor="let question of questions" text="{{ question.text }}"></app-question>
+    <button class="btn">Send</button>
+  </div>
 </div>
