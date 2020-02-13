@@ -13,7 +13,9 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.text);
   }
 
+  setAnswer(value) {
+    console.log(value);
+  }
 }

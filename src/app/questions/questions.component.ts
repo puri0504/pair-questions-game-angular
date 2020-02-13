@@ -3,7 +3,16 @@ import { Component, OnInit } from '@angular/core';
 const QUESTIONS = [
   {
     text: 'Какого цвета глаза?'
-  }
+  },
+  {
+    text: 'А волосы?'
+  },
+  {
+    text: 'А брови?'
+  },
+  {
+    text: 'В ботинки?'
+  },
 ];
 
 @Component({
