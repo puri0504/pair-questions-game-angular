@@ -1,4 +1,4 @@
-<div *ngFor="let question of questions">
+<div *ngFor="let question of questions; index as i ">
   <app-question text="{{ question.text }}"></app-question>
-  <hr>
+  <hr *ngIf="i < questions.length - 1">
 </div>
