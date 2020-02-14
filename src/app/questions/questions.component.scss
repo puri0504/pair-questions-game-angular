@@ -4,6 +4,16 @@
   align-items: center;
 }
 
+.question {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
 .btn {
   color: #fff;
   background-color: #007bff;
