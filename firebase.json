@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/pair-questions-game-angular",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "doubles-game-angular": {
+    "pair-questions-game-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/doubles-game-angular",
+            "outputPath": "dist/pair-questions-game-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "doubles-game-angular:build"
+            "browserTarget": "pair-questions-game-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "doubles-game-angular:build:production"
+              "browserTarget": "pair-questions-game-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "doubles-game-angular:build"
+            "browserTarget": "pair-questions-game-angular:build"
           }
         },
         "test": {
@@ -114,18 +114,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "doubles-game-angular:serve"
+            "devServerTarget": "pair-questions-game-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "doubles-game-angular:serve:production"
+              "devServerTarget": "pair-questions-game-angular:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "doubles-game-angular",
+  "defaultProject": "pair-questions-game-angular",
   "cli": {
     "analytics": false
   }
