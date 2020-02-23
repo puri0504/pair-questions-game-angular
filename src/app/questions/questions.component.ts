@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+// import * as firebase from "firebase";
+import * as firebase from 'firebase/app';
+import 'firebase/database';
 
 const QUESTIONS = [
   {
@@ -33,12 +36,21 @@ export class QuestionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.getQuestions();
+
     const controls = this.getControls();
     this.form = new FormGroup({
       questions: new FormGroup({})
     });
 
     // this.form.questions
+  }
+
+  getQuestions() {
+    // Get a reference to the database service
+    firebase.database().ref('/questions').once('value').then(function(snapshot) {
+      console.log(snapshot.val())
+    });
   }
 
   getControls() {

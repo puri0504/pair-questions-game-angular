@@ -5,6 +5,7 @@
     "types": []
   },
   "files": [
+//    "globals.d.ts",
     "src/main.ts",
     "src/polyfills.ts"
   ],
