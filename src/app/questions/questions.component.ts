@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -30,38 +30,65 @@ const QUESTIONS = [
 export class QuestionsComponent implements OnInit {
   form: FormGroup;
 
-  questions;
+  questionGroup: FormGroup;
 
-  constructor() { }
+  questions: { id: string, text: string }[];
 
-  async ngOnInit() {
-    this.questions = await this.getQuestions();
-
-    const controls = this.getControls();
-    this.form = new FormGroup({
-      questions: new FormGroup({})
-    });
+  constructor(private _formBuilder: FormBuilder) {
   }
 
-  async getQuestions(): Promise<any> {
+
+  ngOnInit() {
+    // this.form =  new FormGroup({
+    //   // questions: new FormGroup(controls)
+    //   questions: new FormGroup({}),
+    // });
+
+    this.form = this._formBuilder.group({
+      questions: this._formBuilder.group({})
+    });
+
+    this.questionGroup = this.form.get('questions') as FormGroup;
+
+    this.fetchQuestions().then(() => {
+      // const controls = this.getControls();
+
+      this.questionGroup.registerControl('question_1', new FormControl(null, Validators.required));
+      this.questionGroup.registerControl('question_2', new FormControl(null, Validators.required));
+    });
+
+    // this.form = new FormGroup({
+    //   // questions: new FormGroup(controls)
+    //   questions: new FormGroup({
+    //     question_1: new FormControl(null, Validators.required),
+    //     question_2: new FormControl(null, Validators.required)
+    //   })
+    // });
+
+    console.log(this.form);
+  }
+
+  async fetchQuestions(): Promise<any> {
     const snapshot = await firebase.database().ref('/questions').once('value');
     const questions = snapshot.val();
-
-    return Object.keys(snapshot.val()).map(id => ({
+    this.questions = Object.keys(snapshot.val()).map(id => ({
       id,
       text: questions[id]
     }));
   }
 
   getControls() {
-    return this.questions.map((id) => ({
-      name: `question_${id}`,
-      control: new FormControl(null, Validators.required)
-    }));
+    const controls = {};
+
+    this.questions.forEach(question => {
+      controls[question.id] = new FormControl(null, Validators.required)
+    });
+
+    return controls;
   }
 
   submit() {
-    console.log(this.form.get('questions'));
+    console.log(this.form.value);
 
     if (this.form.valid) {
     }
