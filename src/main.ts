@@ -11,8 +11,7 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
-
-var app = firebase.initializeApp({
+firebase.initializeApp({
   apiKey: "AIzaSyAkFtYTgx8i7Ny_31BEIUeNH2RYuqdGrBA",
   authDomain: "pair-questions-game.firebaseapp.com",
   databaseURL: "https://pair-questions-game.firebaseio.com",
