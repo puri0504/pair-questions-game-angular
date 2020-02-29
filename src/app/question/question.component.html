@@ -1,4 +1,14 @@
-<div class="question">
-  <p>{{ text }}</p>
-  <app-answer (onSubmit)="setAnswer($event)"></app-answer>
+<div class="question" [formGroup]="question">
+  <label class="question">
+    {{ text }}
+    <input type="text" [formControlName]="id">
+<!--      <span-->
+<!--      *ngIf="form.get('questions').errors && form.get('questions').errors.required"-->
+<!--      class="error"-->
+<!--      >-->
+<!--        Answer is required-->
+<!--    </span>-->
+  </label>
+
+  <!--  <app-answer (onSubmit)="setAnswer($event)"></app-answer>-->
 </div>

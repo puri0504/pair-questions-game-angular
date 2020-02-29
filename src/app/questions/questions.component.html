@@ -1,22 +1,30 @@
 <div class="questions">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div formGroupName="questions">
-      <div *ngFor="let question of questions" >
-        <label class="question">
-          {{ question.text }}
-          {{ question.id }}
-          <input type="text" [formControlName]="question.id">
-          <span
-            *ngIf="form.get('questions').errors && form.get('questions').errors.required"
-            class="error"
-          >
-          Answer is required
-        </span>
-        </label>
-      </div>
+      <app-question
+        *ngFor="let question of questions"
+        id="{{ question.id }}"
+        text="{{ question.text }}"
+        [question]="form"
+      >
+      </app-question>
+
+<!--      <div *ngFor="let question of questions" >-->
+<!--        <label class="question">-->
+<!--          {{ question.text }}-->
+<!--          <input type="text" [formControlName]="question.id">-->
+<!--          <span-->
+<!--            *ngIf="form.get('questions').errors && form.get('questions').errors.required"-->
+<!--            class="error"-->
+<!--          >-->
+<!--          Answer is required-->
+<!--        </span>-->
+<!--        </label>-->
+<!--      </div>-->
     </div>
 
     <button class="btn" type="submit">Send</button>
   </form>
-  <!--<app-question *ngFor="let question of questions" text="{{ question.text }}"></app-question>-->
+
+<!--  <pre>Form Values: {{form.value | json}}</pre>-->
 </div>
