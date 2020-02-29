@@ -1,12 +1,12 @@
 <div class="question" [formGroup]="question">
   <label class="question-container" [formGroup]="question">
     <span class="question-label">{{ text }}</span>
-    <input type="text" [formControlName]="id">
-<!--      <span-->
-<!--      *ngIf="form.get('questions').errors && form.get('questions').errors.required"-->
-<!--      class="error"-->
-<!--      >-->
-<!--        Answer is required-->
-<!--    </span>-->
+    <input type="text" [formControlName]="id" class="question-input">
+    <span
+      *ngIf="question.get(id).errors && question.get(id).errors.required && question.get(id).invalid && question.get(id).touched"
+      class="error"
+      >
+        Answer is required
+    </span>
   </label>
 </div>
