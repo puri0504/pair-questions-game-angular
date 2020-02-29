@@ -1,13 +1,15 @@
 <div class="questions">
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <div formGroupName="questions">
-      <app-question
-        *ngFor="let question of questions"
-        id="{{ question.id }}"
-        text="{{ question.text }}"
-        [question]="form"
-      >
-      </app-question>
+  <form
+    *ngIf="questions && questions.length; else loading"
+    [formGroup]="form"
+    (ngSubmit)="submit()">
+    <app-question
+      *ngFor="let question of questions"
+      id="{{ question.id }}"
+      text="{{ question.text }}"
+      [question]="form"
+    >
+    </app-question>
 
 <!--      <div *ngFor="let question of questions" >-->
 <!--        <label class="question">-->
@@ -21,10 +23,11 @@
 <!--        </span>-->
 <!--        </label>-->
 <!--      </div>-->
-    </div>
 
     <button class="btn" type="submit">Send</button>
   </form>
+
+  <ng-template #loading>Loading...</ng-template>
 
 <!--  <pre>Form Values: {{form.value | json}}</pre>-->
 </div>

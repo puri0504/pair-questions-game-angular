@@ -15,7 +15,6 @@ export class QuestionsComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {}
 
-
   ngOnInit() {
     this.form = this._formBuilder.group({});
 
