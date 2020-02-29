@@ -1,3 +1,12 @@
 .question {
   margin-bottom: 30px;
+
+  .question-container {
+    display: flex;
+    flex-direction: column;
+
+    .question-label {
+      margin-bottom: 10px;
+    }
+  }
 }

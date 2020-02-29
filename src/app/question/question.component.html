@@ -1,6 +1,6 @@
 <div class="question" [formGroup]="question">
-  <label class="question">
-    {{ text }}
+  <label class="question-container" [formGroup]="question">
+    <span class="question-label">{{ text }}</span>
     <input type="text" [formControlName]="id">
 <!--      <span-->
 <!--      *ngIf="form.get('questions').errors && form.get('questions').errors.required"-->
