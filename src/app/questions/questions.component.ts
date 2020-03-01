@@ -44,18 +44,22 @@ export class QuestionsComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
-
+    console.log(this.form);
     if (this.form.valid) {
-      this.setAnswers();
+      this.updateAnswers().catch((err) => {
+        // display error for user
+        console.error(err)
+      });
     }
   }
 
-  async setAnswers() {
-    const updates = {};
-    updates['/questions/question_1/answer'] = 'blue';
+  async updateAnswers() {
+    const answers = {};
 
-    const res = await firebase.database().ref().update(updates);
-    console.log(res);
+    this.questions.forEach(question => {
+      answers['/questions/' + question.id + '/answer'] = this.form.value[question.id]
+    });
+
+    return await firebase.database().ref().update(answers);
   }
 }

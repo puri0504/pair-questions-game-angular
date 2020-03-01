@@ -24,7 +24,7 @@
 <!--        </label>-->
 <!--      </div>-->
 
-    <button class="btn" type="submit">Send</button>
+    <button class="btn" type="submit" [disabled]="form.invalid">Send</button>
   </form>
 
   <ng-template #loading>Loading...</ng-template>
