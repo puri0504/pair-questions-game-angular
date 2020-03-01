@@ -18,21 +18,23 @@ export class QuestionsComponent implements OnInit {
   ngOnInit() {
     this.form = this._formBuilder.group({});
 
-    this.fetchQuestions().then(() => {
-      console.log(this.questions);
+    this.fetchQuestions().then((questions) => {
+      this.setQuestions(questions);
       this.registerControls();
     });
-
-    console.log(this.form);
   }
 
   async fetchQuestions(): Promise<any> {
     const snapshot = await firebase.database().ref('/questions').once('value');
-    const questions = snapshot.val();
-    this.questions = Object.keys(snapshot.val()).map(id => ({
+    return snapshot.val();
+  }
+
+  setQuestions(questions) {
+    this.questions = Object.keys(questions).map(id => ({
       id,
-      text: questions[id]
+      ...questions[id]
     }));
+    console.log(this.questions);
   }
 
   registerControls() {
@@ -45,6 +47,15 @@ export class QuestionsComponent implements OnInit {
     console.log(this.form.value);
 
     if (this.form.valid) {
+      this.setAnswers();
     }
+  }
+
+  async setAnswers() {
+    const updates = {};
+    updates['/questions/question_1/answer'] = 'blue';
+
+    const res = await firebase.database().ref().update(updates);
+    console.log(res);
   }
 }
