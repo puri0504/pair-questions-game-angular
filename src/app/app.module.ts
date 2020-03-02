@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QuestionsComponent } from './questions/questions.component';
-import { QuestionComponent } from './question/question.component';
+import { QuestionsComponent } from './components/questions/questions.component';
+import { QuestionComponent } from './components/question/question.component';
+import { FirebaseService } from './services/firebase.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { QuestionComponent } from './question/question.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    FirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

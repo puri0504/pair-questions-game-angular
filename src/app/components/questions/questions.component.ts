@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import * as firebase from 'firebase/app';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import 'firebase/database';
+
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-questions',
@@ -13,20 +14,15 @@ export class QuestionsComponent implements OnInit {
 
   questions: { id: string, text: string }[];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private firebaseService: FirebaseService, private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.form = this._formBuilder.group({});
 
-    this.fetchQuestions().then((questions) => {
+    this.firebaseService.fetchQuestions().then((questions) => {
       this.setQuestions(questions);
       this.registerControls();
     });
-  }
-
-  async fetchQuestions(): Promise<any> {
-    const snapshot = await firebase.database().ref('/questions').once('value');
-    return snapshot.val();
   }
 
   setQuestions(questions) {
@@ -46,20 +42,10 @@ export class QuestionsComponent implements OnInit {
   submit() {
     console.log(this.form);
     if (this.form.valid) {
-      this.updateAnswers().catch((err) => {
+      this.firebaseService.updateAnswers(this.questions, this.form.value).catch((err) => {
         // display error for user
         console.error(err)
       });
     }
-  }
-
-  async updateAnswers() {
-    const answers = {};
-
-    this.questions.forEach(question => {
-      answers['/questions/' + question.id + '/answer'] = this.form.value[question.id]
-    });
-
-    return await firebase.database().ref().update(answers);
   }
 }
