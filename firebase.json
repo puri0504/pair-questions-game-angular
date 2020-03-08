@@ -1,10 +1,27 @@
 {
-  "hosting": {
-    "public": "dist/pair-questions-game-angular",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+  "hosting": [
+    {
+      "public": "dist/pair-questions-game-angular",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "target": "pair-questions-game-angular",
+      "public": "dist/pair-questions-game-angular",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
 }
