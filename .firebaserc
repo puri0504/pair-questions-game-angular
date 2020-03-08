@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "pair-questions-game": {
+      "hosting": {
+        "pair-questions-game-angular": [
+          "pair-questions-game"
+        ]
+      }
+    }
+  }
+}

@@ -12,23 +12,23 @@ import { FirebaseService } from '../../services/firebase.service';
 export class QuestionsComponent implements OnInit {
   form: FormGroup;
 
-  questions: { id: string, text: string }[];
+  questions: { id: string, text: string, answer: string }[];
 
   constructor(private firebaseService: FirebaseService, private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.form = this._formBuilder.group({});
 
-    this.firebaseService.fetchQuestions().then((questions) => {
-      this.setQuestions(questions);
+    this.firebaseService.fetchQuestions().subscribe((res) => {
+      this.setQuestions(res);
       this.registerControls();
     });
   }
 
   setQuestions(questions) {
-    this.questions = Object.keys(questions).map(id => ({
-      id,
-      ...questions[id]
+    this.questions = questions.map(question => ({
+      id: question.payload.doc.id,
+      ...question.payload.doc.data()
     }));
     console.log(this.questions);
   }
