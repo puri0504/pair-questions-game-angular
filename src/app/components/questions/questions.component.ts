@@ -30,7 +30,6 @@ export class QuestionsComponent implements OnInit {
       id: question.payload.doc.id,
       ...question.payload.doc.data()
     }));
-    console.log(this.questions);
   }
 
   registerControls() {
@@ -40,11 +39,14 @@ export class QuestionsComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form);
+    const formValue = this.form.value;
+
+    console.log(formValue);
+    console.log(this.questions);
+
     if (this.form.valid) {
-      this.firebaseService.updateAnswers(this.questions, this.form.value).catch((err) => {
-        // display error for user
-        console.error(err)
+      Object.keys(formValue).forEach(id => {
+        this.firebaseService.updateAnswer(id, formValue[id])
       });
     }
   }
