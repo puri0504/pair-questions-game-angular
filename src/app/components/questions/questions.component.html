@@ -11,23 +11,8 @@
     >
     </app-question>
 
-<!--      <div *ngFor="let question of questions" >-->
-<!--        <label class="question">-->
-<!--          {{ question.text }}-->
-<!--          <input type="text" [formControlName]="question.id">-->
-<!--          <span-->
-<!--            *ngIf="form.get('questions').errors && form.get('questions').errors.required"-->
-<!--            class="error"-->
-<!--          >-->
-<!--          Answer is required-->
-<!--        </span>-->
-<!--        </label>-->
-<!--      </div>-->
-
     <button class="btn" type="submit" [disabled]="form.invalid">Send</button>
   </form>
 
   <ng-template #loading>Loading...</ng-template>
-
-<!--  <pre>Form Values: {{form.value | json}}</pre>-->
 </div>

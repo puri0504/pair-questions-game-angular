@@ -12,6 +12,6 @@ export class FirebaseService {
   }
 
   updateAnswer(id, answer) {
-    return this.firestore.collection('questions').doc(id).update({ answer });
+    return this.firestore.collection('answers').doc('alexey').set({ ksenia: { [id] : { answer } } });
   }
 }

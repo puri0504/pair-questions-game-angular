@@ -7,6 +7,8 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "src/environments/environment";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { UserComponent } from './components/user/user.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { FirebaseService } from './services/firebase.service';
@@ -14,6 +16,8 @@ import { FirebaseService } from './services/firebase.service';
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
+    UserComponent,
     QuestionsComponent,
     QuestionComponent
   ],
