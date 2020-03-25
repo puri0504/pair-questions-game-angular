@@ -45,9 +45,7 @@ export class QuestionsComponent implements OnInit {
     console.log(this.questions);
 
     if (this.form.valid) {
-      Object.keys(formValue).forEach(id => {
-        this.firebaseService.updateAnswer(id, formValue[id])
-      });
+      this.firebaseService.setAnswers(formValue);
     }
   }
 }

@@ -12,6 +12,13 @@ export class FirebaseService {
     return this.firestore.collection('questions').snapshotChanges();
   }
 
+  setAnswers(answers: {}) {
+    const username = this.authService.username.value;
+    const targetUser = this.authService.targetUser.value;
+
+    return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: answers });
+  }
+
   updateAnswer(id, answer) {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
