@@ -1,14 +1,14 @@
-<div [formGroup]="form">
+<div>
   <div>
     <label>
       Username:
-      <input type="text" formControlName="username" (input)="setUsername()">
+      <input type="text" [formControl]="username">
     </label>
   </div>
   <div>
     <label>
       To:
-      <input type="text" formControlName="targetUser">
+      <input type="text" [formControl]="targetUser">
     </label>
   </div>
 <!--    <pre>Form Values: {{form.value | json}}</pre>-->

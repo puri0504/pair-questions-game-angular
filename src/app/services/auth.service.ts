@@ -1,17 +1,8 @@
 import {Injectable} from "@angular/core";
+import {FormControl} from "@angular/forms";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  username: string;
-  targetUser: string;
-
-  constructor() {}
-
-  setUsername(username: string) {
-    this.username = username;
-  }
-
-  setTargetUser(username: string) {
-    this.targetUser = username;
-  }
+  username: FormControl = new FormControl(null);
+  targetUser: FormControl = new FormControl(null);
 }

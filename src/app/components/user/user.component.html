@@ -1,1 +1,3 @@
-<i>{{ username }}</i> answers the questions about <i>Ksenia</i>
+<div *ngIf="username.value && targetUser.value">
+  <i>{{ username.value }}</i> answers the questions about <i>{{ targetUser.value }}</i>
+</div>

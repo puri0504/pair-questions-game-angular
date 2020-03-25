@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-user',
@@ -8,8 +9,8 @@ import { AuthService } from '../../services/auth.service';
   // styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  username: string;
-  targetUser: string;
+  username: FormControl;
+  targetUser: FormControl;
 
   constructor(private authService: AuthService) {
     this.username = authService.username;
