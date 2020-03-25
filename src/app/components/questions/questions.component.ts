@@ -42,8 +42,7 @@ export class QuestionsComponent implements OnInit {
     const formValue = this.form.value;
     this.submitted = true;
 
-    console.log(formValue);
-    console.log(this.questions);
+    // console.log(formValue);
 
     if (this.form.valid) {
       this.firebaseService.setAnswers(formValue);

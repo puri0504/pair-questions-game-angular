@@ -19,17 +19,14 @@ export class FirebaseService {
     return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: answers });
   }
 
-  updateAnswer(id, answer) {
+  getAnswers(): Promise<Object> {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
 
-    return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: { [id] : { answer } } });
-  }
-
-  getAnswers() {
-    const username = this.authService.username.value;
-    const targetUser = this.authService.targetUser.value;
-
-    return this.firestore.collection('answers').doc(targetUser).get(username);
+    return new Promise((resolve, reject) => {
+      this.firestore.collection('answers').doc(targetUser).get().subscribe(r => {
+        resolve(r.data()[username]);
+      });
+    });
   }
 }
