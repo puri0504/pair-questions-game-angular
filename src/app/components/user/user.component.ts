@@ -13,7 +13,7 @@ export class UserComponent {
   targetUser: FormControl;
 
   constructor(private authService: AuthService) {
-    this.username = authService.username;
-    this.targetUser = authService.targetUser;
+    this.username = authService.getUsername();
+    this.targetUser = authService.getTargetUser();
   }
 }
