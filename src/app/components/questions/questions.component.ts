@@ -11,8 +11,8 @@ import { FirebaseService } from '../../services/firebase.service';
 })
 export class QuestionsComponent implements OnInit {
   form: FormGroup;
-
   questions: { id: string, text: string, answer: string }[];
+  submitted = false;
 
   constructor(private firebaseService: FirebaseService, private _formBuilder: FormBuilder) {}
 
@@ -40,6 +40,7 @@ export class QuestionsComponent implements OnInit {
 
   submit() {
     const formValue = this.form.value;
+    this.submitted = true;
 
     console.log(formValue);
     console.log(this.questions);

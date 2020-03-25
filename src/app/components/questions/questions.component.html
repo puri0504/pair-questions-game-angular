@@ -1,18 +1,24 @@
-<div class="questions">
-  <form
-    *ngIf="questions && questions.length; else loading"
-    [formGroup]="form"
-    (ngSubmit)="submit()">
-    <app-question
-      *ngFor="let question of questions"
-      id="{{ question.id }}"
-      text="{{ question.text }}"
-      [question]="form"
-    >
-    </app-question>
+<div class="questions"
+     *ngIf="!submitted; else answers"
+>
+    <form
+      *ngIf="questions && questions.length; else loading"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+      <app-question
+        *ngFor="let question of questions"
+        id="{{ question.id }}"
+        text="{{ question.text }}"
+        [question]="form"
+      >
+      </app-question>
 
-    <button class="btn" type="submit" [disabled]="form.invalid">Send</button>
-  </form>
+      <button class="btn" type="submit" [disabled]="form.invalid">Send</button>
+    </form>
 
-  <ng-template #loading>Loading...</ng-template>
+    <ng-template #loading>Loading...</ng-template>
 </div>
+
+<ng-template #answers>
+  <app-answers></app-answers>
+</ng-template>
