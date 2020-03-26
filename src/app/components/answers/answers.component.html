@@ -1,9 +1,12 @@
 <div>
   <h4>Check answers from Ksenia:</h4>
-
-  <div
+  <ul
     *ngFor="let answer of answers"
   >
-    <div>{{ answer }}</div>
-  </div>
+    <li>
+      <span>{{ answer.question }}</span>
+      <br>
+      <span>{{ answer.answer }}</span>
+    </li>
+  </ul>
 </div>

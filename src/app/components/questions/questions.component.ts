@@ -20,15 +20,15 @@ export class QuestionsComponent implements OnInit {
     this.form = this._formBuilder.group({});
 
     this.firebaseService.getQuestions().subscribe((res) => {
-      this.setQuestions(res);
+      this.setQuestions(res.docs);
       this.registerControls();
     });
   }
 
   setQuestions(questions) {
     this.questions = questions.map(question => ({
-      id: question.payload.doc.id,
-      ...question.payload.doc.data()
+      id: question.id,
+      ...question.data()
     }));
   }
 
@@ -41,8 +41,6 @@ export class QuestionsComponent implements OnInit {
   submit() {
     const formValue = this.form.value;
     this.submitted = true;
-
-    // console.log(formValue);
 
     if (this.form.valid) {
       this.firebaseService.setAnswers(formValue);

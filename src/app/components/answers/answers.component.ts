@@ -16,7 +16,6 @@ export class AnswersComponent implements OnInit {
   ngOnInit(): void {
     this.firebaseService.getAnswers().then(answers => {
       console.log('AnswersComponent', answers);
-
       this.answers = answers;
     });
   }
