@@ -9,7 +9,7 @@ import {FirebaseService} from "../../services/firebase.service";
   // styleUrls: ['./auth.component.scss']
 })
 export class AnswersComponent implements OnInit {
-  answers: any;
+  answers: { question: string, answer: string }[];
 
   constructor(private firebaseService: FirebaseService) {}
 
