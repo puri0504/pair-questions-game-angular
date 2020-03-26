@@ -19,7 +19,7 @@ export class QuestionsComponent implements OnInit {
   ngOnInit() {
     this.form = this._formBuilder.group({});
 
-    this.firebaseService.fetchQuestions().subscribe((res) => {
+    this.firebaseService.getQuestions().subscribe((res) => {
       this.setQuestions(res);
       this.registerControls();
     });

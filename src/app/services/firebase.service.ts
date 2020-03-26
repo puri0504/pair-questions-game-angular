@@ -8,7 +8,7 @@ import {AuthService} from "./auth.service";
 export class FirebaseService {
   constructor(private firestore: AngularFirestore, private authService: AuthService) { }
 
-  fetchQuestions() {
+  getQuestions() {
     return this.firestore.collection('questions').snapshotChanges();
   }
 
@@ -23,7 +23,7 @@ export class FirebaseService {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this.firestore.collection('answers').doc(targetUser).get().subscribe(r => {
         resolve(r.data()[username]);
       });
