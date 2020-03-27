@@ -20,7 +20,7 @@ export class FirebaseService {
     return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: answers });
   }
 
-  getAnswers(): Promise<{ question: string, answer: string }[]> {
+  getAnswers(): Promise<{ question_id: string, question: string, answer: string }[]> {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
 
@@ -32,6 +32,7 @@ export class FirebaseService {
         const answers = answersResponse.data()[username];
         const questions = questionsResponse.docs;
         const result = questions.map(question => ({
+          question_id: question.id,
           question: question.data().text,
           answer: this.getAnswerByQuestionId(answers, question.id)
         }));

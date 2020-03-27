@@ -1,12 +1,20 @@
 <div>
   <h4>Check answers from Ksenia:</h4>
-  <ul
-    *ngFor="let answer of answers"
-  >
-    <li>
-      <span>{{ answer.question }}</span>
-      <br>
-      <span>{{ answer.answer }}</span>
-    </li>
-  </ul>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ul>
+      <li *ngFor="let answer of answers">
+        <span>{{ answer.question }}</span>
+        <br>
+        <span>{{ answer.answer }}</span>
+        <br>
+        <label>
+          is correct:
+          <input type="checkbox" [formControlName]="answer.question_id">
+        </label>
+      </li>
+    </ul>
+
+    <button type="submit" class="btn">Send</button>
+  </form>
 </div>
