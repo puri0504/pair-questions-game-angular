@@ -13,7 +13,7 @@ export class FirebaseService {
     return this.firestore.collection('questions').get();
   }
 
-  setAnswers(answers: { answer: string, question_id: string, isCorrectly: boolean }[]) {
+  setAnswers(answers: { answer: string, question_id: string, isCorrect: boolean }[]) {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
 
@@ -46,5 +46,18 @@ export class FirebaseService {
     const answer = answers.find(answer => answer.question_id === id);
 
     return answer.answer;
+  }
+
+  getResults(): Promise<{ question_id: string, isCorrect: boolean, answer: string }[]> {
+    const username = this.authService.username.value;
+    const targetUser = this.authService.targetUser.value;
+
+    return new Promise((resolve) => {
+      this.firestore.collection('answers').doc(username).get()
+        .subscribe((r) => {
+          const answers = r.data()[targetUser];
+          resolve(answers);
+      });
+    });
   }
 }

@@ -46,7 +46,7 @@ export class QuestionsComponent implements OnInit {
       const payload = Object.keys(answers).map((id) => ({
         answer: answers[id],
         question_id: id,
-        isCorrectly: false,
+        isCorrect: false,
       }));
 
       this.firebaseService.setAnswers(payload);

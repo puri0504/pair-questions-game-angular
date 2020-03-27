@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isSubmit; else results">
   <h4>Check answers from Ksenia:</h4>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
@@ -18,3 +18,7 @@
     <button type="submit" class="btn">Send</button>
   </form>
 </div>
+
+<ng-template #results>
+  <app-results></app-results>
+</ng-template>

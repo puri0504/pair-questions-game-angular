@@ -10,6 +10,7 @@ import {FirebaseService} from "../../services/firebase.service";
 export class AnswersComponent implements OnInit {
   form: FormGroup;
   answers: { question_id: string, question: string, answer: string }[];
+  isSubmit = false;
 
   constructor(private firebaseService: FirebaseService, private _formBuilder: FormBuilder) {}
 
@@ -41,9 +42,16 @@ export class AnswersComponent implements OnInit {
     const payload = this.answers.map((answer) => ({
       answer: answer.answer,
       question_id: answer.question_id,
-      isCorrectly: !!formValue[answer.question_id],
+      isCorrect: !!formValue[answer.question_id],
     }));
 
-    this.firebaseService.setAnswers(payload);
+    this.firebaseService.setAnswers(payload).then(() => {
+      this.firebaseService.getResults().then((answers) => {
+        this.isSubmit = true;
+        console.log('answers', answers);
+
+        const positiveResults = answers.some(answer => answer.isCorrect);
+      });
+    });
   }
 }

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { UserComponent } from './components/user/user.component';
 import { AnswersComponent } from './components/answers/answers.component';
+import { ResultsComponent } from './components/answers/results/results.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { FirebaseService } from './services/firebase.service';
@@ -20,6 +21,7 @@ import { FirebaseService } from './services/firebase.service';
     AuthComponent,
     UserComponent,
     AnswersComponent,
+    ResultsComponent,
     QuestionsComponent,
     QuestionComponent
   ],
