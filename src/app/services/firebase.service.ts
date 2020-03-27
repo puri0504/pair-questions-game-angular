@@ -17,8 +17,6 @@ export class FirebaseService {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
 
-    console.log('answers', answers);
-
     return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: answers });
   }
 
@@ -35,11 +33,17 @@ export class FirebaseService {
         const questions = questionsResponse.docs;
         const result = questions.map(question => ({
           question: question.data().text,
-          answer: answers[question.id]
+          answer: this.getAnswerByQuestionId(answers, question.id)
         }));
 
         resolve(result);
       });
     });
+  }
+
+  getAnswerByQuestionId(answers, id) {
+    const answer = answers.find(answer => answer.question_id === id);
+
+    return answer.answer;
   }
 }
