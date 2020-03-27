@@ -13,9 +13,11 @@ export class FirebaseService {
     return this.firestore.collection('questions').get();
   }
 
-  setAnswers(answers: {}) {
+  setAnswers(answers: { answer: string, question_id: string, isCorrectly: boolean }[]) {
     const username = this.authService.username.value;
     const targetUser = this.authService.targetUser.value;
+
+    console.log('answers', answers);
 
     return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: answers });
   }

@@ -39,11 +39,17 @@ export class QuestionsComponent implements OnInit {
   }
 
   submit() {
-    const formValue = this.form.value;
+    const answers = this.form.value;
     this.submitted = true;
 
     if (this.form.valid) {
-      this.firebaseService.setAnswers(formValue);
+      const payload = Object.keys(answers).map((id) => ({
+        answer: answers[id],
+        question_id: id,
+        isCorrectly: false,
+      }));
+
+      this.firebaseService.setAnswers(payload);
     }
   }
 }
