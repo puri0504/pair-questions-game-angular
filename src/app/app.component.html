@@ -1,6 +1,10 @@
 <div class="app-root">
   <h1 class="title">{{ title }}</h1>
-  <app-auth></app-auth>
-  <app-user></app-user>
-  <app-questions></app-questions>
+  <nav>
+    <ul>
+      <li><a routerLink="/auth" routerLinkActive="active">Auth</a></li>
+      <li><a routerLink="/questions" routerLinkActive="active">Questions</a></li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
 </div>
