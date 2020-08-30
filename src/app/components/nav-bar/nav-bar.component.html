@@ -1,0 +1,4 @@
+<nav class="nav-bar">
+  <div>User: {{user}}</div>
+  <a *ngIf="user" (click)="authService.logout()">Logout</a>
+</nav>

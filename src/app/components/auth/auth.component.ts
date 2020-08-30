@@ -1,20 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { Router } from '@angular/router';
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html'
-  // styleUrls: ['./auth.component.scss']
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  username: FormControl;
-  targetUser: FormControl;
+  loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    if (this.authService.user) {
+      // this.router.navigateByUrl('/');
+    }
+  }
 
   ngOnInit(): void {
-    this.username = this.authService.username;
-    this.targetUser = this.authService.targetUser;
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    console.log('onSubmit', this.loginForm.invalid);
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.authService.login(this.loginForm.controls.username.value);
   }
 }

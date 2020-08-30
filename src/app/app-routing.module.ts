@@ -11,13 +11,14 @@ const routes: Routes = [
     component: AuthComponent
   },
   {
-    path: 'questions',
+    path: '',
     component: QuestionsComponent
   },
   {
     path: 'answers',
     component: AnswersComponent
-  }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

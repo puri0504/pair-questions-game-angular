@@ -8,7 +8,7 @@ import { environment } from "src/environments/environment";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { UserComponent } from './components/user/user.component';
+import { NavbarComponent } from './components/nav-bar/nav-bar.component';
 import { AnswersComponent } from './components/answers/answers.component';
 import { ResultsComponent } from './components/answers/results/results.component';
 import { QuestionsComponent } from './components/questions/questions.component';
@@ -19,7 +19,7 @@ import { FirebaseService } from './services/firebase.service';
   declarations: [
     AppComponent,
     AuthComponent,
-    UserComponent,
+    NavbarComponent,
     AnswersComponent,
     ResultsComponent,
     QuestionsComponent,

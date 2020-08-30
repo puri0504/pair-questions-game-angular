@@ -14,15 +14,15 @@ export class FirebaseService {
   }
 
   setAnswers(answers: { answer: string, question_id: string, isCorrect: boolean }[]) {
-    const username = this.authService.username.value;
-    const targetUser = this.authService.targetUser.value;
+    const username = this.authService.user;
+    const targetUser = this.authService.targetUser;
 
     return username && targetUser && this.firestore.collection('answers').doc(username).set({ [targetUser]: answers });
   }
 
   getAnswers(): Promise<{ question_id: string, question: string, answer: string }[]> {
-    const username = this.authService.username.value;
-    const targetUser = this.authService.targetUser.value;
+    const username = this.authService.user;
+    const targetUser = this.authService.targetUser;
 
     return new Promise((resolve) => {
       zip(
@@ -49,8 +49,8 @@ export class FirebaseService {
   }
 
   getResults(): Promise<{ question_id: string, isCorrect: boolean, answer: string }[]> {
-    const username = this.authService.username.value;
-    const targetUser = this.authService.targetUser.value;
+    const username = this.authService.user;
+    const targetUser = this.authService.targetUser;
 
     return new Promise((resolve) => {
       this.firestore.collection('answers').doc(username).get()

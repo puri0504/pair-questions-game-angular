@@ -1,15 +1,12 @@
-<div>
-  <div>
-    <label>
-      From:
-      <input type="text" [formControl]="username">
-    </label>
-  </div>
-  <div>
-    <label>
-      To:
-      <input type="text" [formControl]="targetUser">
-    </label>
-  </div>
-<!--    <pre>Form Values: {{form.value | json}}</pre>-->
+<div class="auth">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      Hello!
+      <label>
+        I'm
+        <input type="text" formControlName="username" class="form-control">
+      </label>
+    </div>
+    <button>Login</button>
+  </form>
 </div>
