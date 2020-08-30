@@ -17,7 +17,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService
   ) {
     if (this.authService.user) {
-      // this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/');
     }
   }
 
@@ -28,11 +28,11 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('onSubmit', this.loginForm.invalid);
     if (this.loginForm.invalid) {
       return;
     }
 
     this.authService.login(this.loginForm.controls.username.value);
+    this.router.navigateByUrl('/');
   }
 }

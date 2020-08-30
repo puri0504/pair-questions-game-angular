@@ -1,0 +1,9 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+
+  .logout {
+    cursor: pointer;
+    color: #007bff;
+  }
+}
